@@ -6,14 +6,14 @@
 #    By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/16 13:55:50 by wismith           #+#    #+#              #
-#    Updated: 2022/05/17 15:53:37 by wismith          ###   ########.fr        #
+#    Updated: 2022/05/18 21:42:29 by wismith          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 .SILENT:
 
 NAME = philo
-SRCS = philo errmsg init tools
+SRCS = philo errmsg init tools tools2
 
 OBJDIR = OBJECTS
 OBJ = $(addprefix $(OBJDIR)/, $(addsuffix .o , $(SRCS)))

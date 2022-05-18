@@ -6,11 +6,17 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:52:25 by wismith           #+#    #+#             */
-/*   Updated: 2022/05/17 22:43:49 by wismith          ###   ########.fr       */
+/*   Updated: 2022/05/18 15:01:20 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
+
+long long	timestamp(struct timeval *tv)
+{	
+	gettimeofday(tv, NULL);
+	return ((tv->tv_sec * 1000) + (tv->tv_usec / 1000));
+}
 
 int	ft_strlen(char *s)
 {
@@ -20,11 +26,6 @@ int	ft_strlen(char *s)
 	while (s[i])
 		i++;
 	return (i);
-}
-
-int	ft_putstr(char *s, int fd)
-{
-	return (write(fd, s, ft_strlen(s)));
 }
 
 int	ft_atoi(const char *nptr)
@@ -66,6 +67,7 @@ void	parser(t_times *preset, int argc, char **argv)
 		preset->num_philo_eats = num_check(argv[5]);
 	else
 		preset->num_philo_eats = -1;
-	if (preset->n_philo == 0 || preset->n_philo > 250 || preset->num_philo_eats == 0)
+	if (preset->n_philo == 0 || preset->n_philo > 250
+		|| preset->num_philo_eats == 0)
 		exit(1);
 }
