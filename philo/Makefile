@@ -6,7 +6,7 @@
 #    By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/16 13:55:50 by wismith           #+#    #+#              #
-#    Updated: 2022/05/18 21:42:29 by wismith          ###   ########.fr        #
+#    Updated: 2022/05/19 17:15:33 by wismith          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ all : $(NAME)
 
 $(NAME) : $(OBJ)
 	tput setaf 6; echo "-> Compiling <-"; tput setaf 7;
-	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+	$(CC) $(CFLAGS) -pthread $(OBJ) -o $(NAME)
 
 clean :
 	tput setaf 1; echo "-> Cleaning <-"; tput setaf 7;

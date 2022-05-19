@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 13:57:47 by wismith           #+#    #+#             */
-/*   Updated: 2022/05/18 21:46:50 by wismith          ###   ########.fr       */
+/*   Updated: 2022/05/19 17:44:04 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <limits.h>
 # include <unistd.h>
 # include <sys/time.h>
+# include <pthread.h>
 
 # define KNRM  "\x1B[0m"
 # define KRED  "\x1B[31m"
@@ -28,14 +29,23 @@
 # define KWHT  "\x1B[37m"
 # define KCLR  "\e[1;1H\e[2J"
 
+typedef struct s_philo
+{
+	int				id;
+	pthread_t		thread_id;
+}	t_philo;
+
 typedef struct s_times
 {
-	int			n_philo;
-	int			t_die;
-	int			t_eat;
-	int			t_sleep;
-	int			num_philo_eats;
-	long long	init_time;
+	int				n_philo;
+	int				t_die;
+	int				t_eat;
+	int				t_sleep;
+	int				num_philo_eats;
+	long long		init_time;
+	t_philo			philo[250];
+	struct timeval	*tv;
+	int				current_spawn;
 }	t_times;
 
 /* Error msgs */
@@ -51,7 +61,10 @@ int			ft_putstr(char *s, int fd);
 int			ft_strlen(char *s);
 long long	timestamp(struct timeval *tv);
 
-/*tools2*/
+/* tools2 */
 void	print_action(struct timeval	*tv, t_times *preset, int id, char *s);
+
+/* init */
+void	birth_machine(t_times *preset);
 
 #endif
