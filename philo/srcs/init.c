@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:42:13 by wismith           #+#    #+#             */
-/*   Updated: 2022/05/19 17:48:54 by wismith          ###   ########.fr       */
+/*   Updated: 2022/05/19 18:29:52 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,17 @@ void	*spawner(void *pre)
 	t_times			*preset;
 
 	preset = (t_times *) pre;
+	if (!(preset->current_spawn % 2))
+		printf(KGRN);
+	else
+		printf(KRED);
 	print_action(preset->tv, preset, preset->current_spawn, "has spawned");
+	printf(KNRM);
 	return (NULL);
 }
+
+/* giving birth to pThreads... */
+/* Not as easy as it looks! */
 
 void	birth_machine(t_times *preset)
 {
