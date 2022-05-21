@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:52:25 by wismith           #+#    #+#             */
-/*   Updated: 2022/05/18 15:01:20 by wismith          ###   ########.fr       */
+/*   Updated: 2022/05/20 20:04:30 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ int	num_check(char *s)
 void	parser(t_times *preset, int argc, char **argv)
 {
 	preset->n_philo = num_check(argv[1]);
+	preset->num_forks = preset->n_philo;
 	preset->t_die = num_check(argv[2]);
 	preset->t_eat = num_check(argv[3]);
 	preset->t_sleep = num_check(argv[4]);

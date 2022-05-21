@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 13:57:47 by wismith           #+#    #+#             */
-/*   Updated: 2022/05/19 17:44:04 by wismith          ###   ########.fr       */
+/*   Updated: 2022/05/20 20:06:39 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,10 @@
 
 typedef struct s_philo
 {
-	int				id;
+	int				forks;
+	int				eating;
+	int				sleeping;
+	int				dead;
 	pthread_t		thread_id;
 }	t_philo;
 
@@ -41,6 +44,7 @@ typedef struct s_times
 	int				t_die;
 	int				t_eat;
 	int				t_sleep;
+	int				num_forks;
 	int				num_philo_eats;
 	long long		init_time;
 	t_philo			philo[250];
@@ -62,9 +66,9 @@ int			ft_strlen(char *s);
 long long	timestamp(struct timeval *tv);
 
 /* tools2 */
-void	print_action(struct timeval	*tv, t_times *preset, int id, char *s);
+void		print_action(struct timeval *tv, t_times *preset, int id, char *s);
 
 /* init */
-void	birth_machine(t_times *preset);
+void		birth_machine(t_times *preset);
 
 #endif
