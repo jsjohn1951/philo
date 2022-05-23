@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 13:57:47 by wismith           #+#    #+#             */
-/*   Updated: 2022/05/20 20:06:39 by wismith          ###   ########.fr       */
+/*   Updated: 2022/05/23 14:20:26 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef struct s_times
 	t_philo			philo[250];
 	struct timeval	*tv;
 	int				current_spawn;
+	void			*mutex;
 }	t_times;
 
 /* Error msgs */

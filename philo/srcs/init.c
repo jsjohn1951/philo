@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:42:13 by wismith           #+#    #+#             */
-/*   Updated: 2022/05/20 20:10:00 by wismith          ###   ########.fr       */
+/*   Updated: 2022/05/23 14:26:53 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,10 @@ void	*spawner(void *pre)
 	int				id;
 
 	preset = (t_times *) pre;
+	pthread_mutex_lock(preset->mutex);
 	id = preset->current_spawn;
-	if (!(preset->current_spawn % 2))
-		printf(KGRN);
-	else
-		printf(KRED);
-	init_tphilo(preset, id);
 	print_action(preset->tv, preset, id, "has spawned");
-	printf(KNRM);
+	pthread_mutex_unlock(preset->mutex);
 	return (NULL);
 }
 
@@ -42,14 +38,24 @@ void	*spawner(void *pre)
 
 void	birth_machine(t_times *preset)
 {
-	int	i;
+	int				i;
+	pthread_mutex_t	mutex;
 
-	i = 1;
-	while (i <= preset->n_philo && preset->n_philo > 0)
+	i = 0;
+	pthread_mutex_init(&mutex, NULL);
+	preset->mutex = &mutex;
+	while (++i <= preset->n_philo && preset->n_philo > 0)
 	{
 		preset->current_spawn = i;
-		pthread_create(&preset->philo[i - 1].thread_id, NULL, spawner, preset);
-		pthread_join(preset->philo[i - 1].thread_id, NULL);
-		i++;
+		if (pthread_create(&preset->philo[i - 1].thread_id, NULL,
+				spawner, preset))
+			exit(1);
+		usleep(2);
+	}
+	i = 0;
+	while (++i <= preset->n_philo && preset->n_philo > 0)
+	{
+		if (pthread_join(preset->philo[i - 1].thread_id, NULL))
+			exit(1);
 	}
 }
