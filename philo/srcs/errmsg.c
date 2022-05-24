@@ -6,15 +6,19 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:34:10 by wismith           #+#    #+#             */
-/*   Updated: 2022/05/18 13:32:24 by wismith          ###   ########.fr       */
+/*   Updated: 2022/05/24 14:36:01 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-int	ft_putstr(char *s, int fd)
+void	ft_putstr(char *s, int fd)
 {
-	return (write(fd, s, ft_strlen(s)));
+	int	i;
+
+	i = -1;
+	while (s[++i])
+		write(fd, &s[i], 1);
 }
 
 void	msg4(void)

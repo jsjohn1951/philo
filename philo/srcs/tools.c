@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:52:25 by wismith           #+#    #+#             */
-/*   Updated: 2022/05/23 14:01:44 by wismith          ###   ########.fr       */
+/*   Updated: 2022/05/24 14:48:00 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,6 @@ long long	timestamp(struct timeval *tv)
 {	
 	gettimeofday(tv, NULL);
 	return ((tv->tv_sec * 1000) + (tv->tv_usec / 1000));
-}
-
-int	ft_strlen(char *s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
 }
 
 int	ft_atoi(const char *nptr)
@@ -60,7 +50,6 @@ int	num_check(char *s)
 void	parser(t_times *preset, int argc, char **argv)
 {
 	preset->n_philo = num_check(argv[1]);
-	preset->num_forks = preset->n_philo;
 	preset->t_die = num_check(argv[2]);
 	preset->t_eat = num_check(argv[3]);
 	preset->t_sleep = num_check(argv[4]);
@@ -71,4 +60,18 @@ void	parser(t_times *preset, int argc, char **argv)
 	if (preset->n_philo == 0 || preset->n_philo > 250
 		|| preset->num_philo_eats == 0)
 		exit(1);
+}
+
+int	death_check(t_times *preset)
+{
+	int	i;
+
+	i = 0;
+	while (i < preset->n_philo)
+	{
+		if (preset->philo[i].dead == 1)
+			return (i);
+		i++;
+	}
+	return (0);
 }

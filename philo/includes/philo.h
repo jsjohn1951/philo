@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 13:57:47 by wismith           #+#    #+#             */
-/*   Updated: 2022/05/23 14:20:26 by wismith          ###   ########.fr       */
+/*   Updated: 2022/05/24 14:46:20 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@
 
 typedef struct s_philo
 {
-	int				forks;
+	int				fork_l;
+	int				fork_r;
 	int				eating;
 	int				sleeping;
 	int				dead;
@@ -44,7 +45,6 @@ typedef struct s_times
 	int				t_die;
 	int				t_eat;
 	int				t_sleep;
-	int				num_forks;
 	int				num_philo_eats;
 	long long		init_time;
 	t_philo			philo[250];
@@ -62,12 +62,9 @@ void		msg4(void);
 /* tools */
 void		parser(t_times *preset, int argc, char **argv);
 int			ft_atoi(const char *nptr);
-int			ft_putstr(char *s, int fd);
-int			ft_strlen(char *s);
+void		ft_putstr(char *s, int fd);
 long long	timestamp(struct timeval *tv);
-
-/* tools2 */
-void		print_action(struct timeval *tv, t_times *preset, int id, char *s);
+int			death_check(t_times *preset);
 
 /* init */
 void		birth_machine(t_times *preset);
