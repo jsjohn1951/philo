@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 13:57:47 by wismith           #+#    #+#             */
-/*   Updated: 2022/05/24 14:46:20 by wismith          ###   ########.fr       */
+/*   Updated: 2022/05/25 11:15:44 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void		parser(t_times *preset, int argc, char **argv);
 int			ft_atoi(const char *nptr);
 void		ft_putstr(char *s, int fd);
 long long	timestamp(struct timeval *tv);
+long long	philo_timestamp(t_times *preset);
 int			death_check(t_times *preset);
 
 /* init */

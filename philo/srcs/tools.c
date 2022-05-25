@@ -6,16 +6,18 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:52:25 by wismith           #+#    #+#             */
-/*   Updated: 2022/05/24 14:48:00 by wismith          ###   ########.fr       */
+/*   Updated: 2022/05/25 11:56:14 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-long long	timestamp(struct timeval *tv)
+long long	philo_timestamp(t_times *preset)
 {	
-	gettimeofday(tv, NULL);
-	return ((tv->tv_sec * 1000) + (tv->tv_usec / 1000));
+	// pthread_mutex_lock(preset->mutex);
+	gettimeofday(preset->tv, NULL);
+	// pthread_mutex_unlock(preset->mutex);
+	return ((preset->tv->tv_sec * 1000) + (preset->tv->tv_usec / 1000));
 }
 
 int	ft_atoi(const char *nptr)

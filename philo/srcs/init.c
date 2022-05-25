@@ -6,15 +6,24 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:42:13 by wismith           #+#    #+#             */
-/*   Updated: 2022/05/24 18:28:40 by wismith          ###   ########.fr       */
+/*   Updated: 2022/05/25 12:07:00 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-void	print_action(struct timeval *tv, t_times *preset, int id, char *s)
+void	smart_chill(unsigned long i, t_times *preset)
 {
-	printf("%lld %d %s\n", timestamp(tv) - preset->init_time, id, s);
+	unsigned long	current;
+
+	current = philo_timestamp(preset);
+	while ((philo_timestamp(preset) - current) < i)
+		;
+}
+
+void	print_action(t_times *preset, int id, char *s)
+{
+	printf("%lld %d %s\n", philo_timestamp(preset) - preset->init_time, id, s);
 }
 
 void	init_tphilo(t_times *preset, int id)
@@ -30,24 +39,26 @@ void	*spawner(void *pre)
 {
 	t_times			*preset;
 	int				id;
-	int				i;
+	// int				i;
 
-	i = 0;
+	// i = 0;
 	preset = (t_times *) pre;
-	pthread_mutex_lock(preset->mutex);
+	// pthread_mutex_lock(preset->mutex);
 	id = preset->current_spawn;
-	pthread_mutex_unlock(preset->mutex);
-	init_tphilo(preset, id);
-	while (!death_check(preset) && i < 2)
-	{
-		usleep(200);
-		pthread_mutex_lock(preset->mutex);
-		print_action(preset->tv, preset, id, "is alive");
-		pthread_mutex_unlock(preset->mutex);
-		if (death_check(preset))
-			return (NULL);
-		i++;
-	}
+	print_action(preset, id, "has spawned");
+	// smart_chill(1, preset);
+	// pthread_mutex_unlock(preset->mutex);
+	// init_tphilo(preset, id);
+	// while (!death_check(preset) && i < 2)
+	// {
+	// 	usleep(200);
+	// 	pthread_mutex_lock(preset->mutex);
+	// 	print_action(preset->tv, preset, id, "is alive");
+	// 	pthread_mutex_unlock(preset->mutex);
+	// 	if (death_check(preset))
+	// 		return (NULL);
+	// 	i++;
+	// }
 	return (NULL);
 }
 
@@ -68,7 +79,8 @@ void	birth_machine(t_times *preset)
 		if (pthread_create(&preset->philo[i - 1].thread_id, NULL,
 				spawner, preset))
 			exit(1);
-		usleep(1);
+		smart_chill(1, preset);
+		// usleep(500);
 	}
 	i = 0;
 	while (++i <= preset->n_philo && preset->n_philo > 0)
