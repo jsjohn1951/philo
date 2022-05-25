@@ -6,17 +6,17 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:52:25 by wismith           #+#    #+#             */
-/*   Updated: 2022/05/25 11:56:14 by wismith          ###   ########.fr       */
+/*   Updated: 2022/05/25 18:09:37 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
 long long	philo_timestamp(t_times *preset)
-{	
-	// pthread_mutex_lock(preset->mutex);
+{
+	pthread_mutex_lock(preset->mutex);
 	gettimeofday(preset->tv, NULL);
-	// pthread_mutex_unlock(preset->mutex);
+	pthread_mutex_unlock(preset->mutex);
 	return ((preset->tv->tv_sec * 1000) + (preset->tv->tv_usec / 1000));
 }
 

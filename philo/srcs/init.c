@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:42:13 by wismith           #+#    #+#             */
-/*   Updated: 2022/05/25 12:07:00 by wismith          ###   ########.fr       */
+/*   Updated: 2022/05/25 18:13:50 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,12 @@ void	smart_chill(unsigned long i, t_times *preset)
 
 void	print_action(t_times *preset, int id, char *s)
 {
-	printf("%lld %d %s\n", philo_timestamp(preset) - preset->init_time, id, s);
+	unsigned long	new_timestamp;
+
+	new_timestamp = philo_timestamp(preset);
+	pthread_mutex_lock(preset->mutex);
+	printf("%lld %d %s\n", new_timestamp - preset->init_time, id, s);
+	pthread_mutex_unlock(preset->mutex);
 }
 
 void	init_tphilo(t_times *preset, int id)
@@ -43,11 +48,11 @@ void	*spawner(void *pre)
 
 	// i = 0;
 	preset = (t_times *) pre;
-	// pthread_mutex_lock(preset->mutex);
+	pthread_mutex_lock(preset->mutex);
 	id = preset->current_spawn;
+	pthread_mutex_unlock(preset->mutex);
 	print_action(preset, id, "has spawned");
 	// smart_chill(1, preset);
-	// pthread_mutex_unlock(preset->mutex);
 	// init_tphilo(preset, id);
 	// while (!death_check(preset) && i < 2)
 	// {
@@ -80,7 +85,6 @@ void	birth_machine(t_times *preset)
 				spawner, preset))
 			exit(1);
 		smart_chill(1, preset);
-		// usleep(500);
 	}
 	i = 0;
 	while (++i <= preset->n_philo && preset->n_philo > 0)
