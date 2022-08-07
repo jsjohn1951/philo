@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:14:08 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/08 00:38:08 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/08 00:54:03 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,9 @@ void	*process_(void *dat)
 	philo = (t_philo *) dat;
 	data = (t_data *) philo->data;
 	i = 1;
-	if (!(philo->id % 2))
+	if ((philo->id % 2))
 		i = 2;
+	philo->last_time_eat = new_stamp(data);
 	while (i < 4)
 	{
 		if (philo->local.must_eat)
