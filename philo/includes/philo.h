@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 14:12:09 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/07 17:35:32 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/07 18:45:18 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,16 @@ typedef struct s_local
 
 typedef struct s_philo
 {
-	void		*data;
-	pthread_t	thread_id;
-	int			id;
-	int			l_id;
-	int			r_id;
-	int			last_time_eat;
-	int			alive;
-	int			times_eatin;
-	t_local		local;
+	void			*data;
+	pthread_t		thread_id;
+	int				id;
+	int				l_id;
+	int				r_id;
+	int				last_time_eat;
+	int				alive;
+	int				times_eatin;
+	unsigned long	current_time;
+	t_local			local;
 }	t_philo;
 
 typedef struct s_data

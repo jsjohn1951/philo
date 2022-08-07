@@ -6,36 +6,38 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 12:15:52 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/07 13:42:32 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/08 00:26:49 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/philo.h"
 
-void	life_(t_data *data, t_philo *philo, int *i)
+int	death_(t_data *data, t_philo *p)
 {
-	if (new_stamp(data) - philo->last_time_eat
-		>= (unsigned long) philo->local.td_)
+	p->current_time = new_stamp(data);
+	if (p->current_time - p->last_time_eat
+		>= (unsigned long) p->local.td_ + 9)
 	{
-		print_(philo, "died");
+		print_(p, "died");
 		pthread_mutex_lock(&data->death);
 		data->deaths = 1;
 		pthread_mutex_unlock(&data->death);
+		return (1);
 	}
-	pthread_mutex_lock(&data->death);
-	if (!data->deaths)
+	return (0);
+}
+
+void	life_(t_data *data, t_philo *philo, int *i)
+{
+	if (death_(data, philo) || data->deaths)
 	{
-		pthread_mutex_unlock(&data->death);
-		if (*i == 1)
-			try_eat_(philo, data);
-		if (*i == 2)
-			alarm_clock(print_(philo, "is sleeping"), data);
-		if (*i == 3)
-			*i = print_(philo, "is thinking");
-	}
-	else
-	{
-		pthread_mutex_unlock(&data->death);
 		*i = 4;
+		return ;
 	}
+	if (*i == 1)
+		try_eat_(philo, data);
+	if (*i == 2)
+		alarm_clock(print_(philo, "is sleeping"), data);
+	if (*i == 3)
+		*i = print_(philo, "is thinking");
 }

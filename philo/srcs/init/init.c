@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:14:08 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/07 17:56:23 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/08 00:38:08 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,14 @@ void	*process_(void *dat)
 	data = (t_data *) philo->data;
 	i = 1;
 	if (!(philo->id % 2))
-		alarm_clock(2, data);
-	while (i < 4 && !data->deaths)
+		i = 2;
+	while (i < 4)
 	{
 		if (philo->local.must_eat)
 			if (!philo->local.me_)
 				return (NULL);
+		if (!i)
+			usleep(150);
 		life_(data, philo, &i);
 		i++;
 	}
@@ -44,7 +46,6 @@ void	init_philo_(t_data *data, int i)
 	else
 		data->philo[i].l_id = data->philo[i].id - 2;
 	data->philo[i].r_id = data->philo[i].id - 1;
-	data->philo[i].last_time_eat = new_stamp(data);
 	data->forks[i] = 0;
 	data->philo[i].times_eatin = 0;
 	local_vars_(data, &data->philo[i]);
@@ -86,18 +87,13 @@ void	init_(t_data *data)
 	init_time_(data);
 	while (++i < data->np_)
 		init_philo_(data, i);
-	i = 0;
-	while (i < data->np_)
-	{
+	i = -1;
+	while (++i < data->np_)
 		pthread_create(&data->philo[i].thread_id,
 			NULL, process_, &data->philo[i]);
-		i++;
-	}
-	i = 0;
-	while (i < data->np_)
-	{
+	i = -1;
+	while (++i < data->np_)
 		pthread_join(data->philo[i].thread_id, NULL);
-		i++;
-	}
+	printf("\x1B[0m");
 	destroy_mutex_(data);
 }
