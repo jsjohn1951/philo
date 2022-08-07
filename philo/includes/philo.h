@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 14:12:09 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/07 15:59:57 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/07 17:35:32 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ typedef struct s_philo
 	void		*data;
 	pthread_t	thread_id;
 	int			id;
-	int			l_fork;
-	int			r_fork;
 	int			l_id;
 	int			r_id;
 	int			last_time_eat;

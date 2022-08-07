@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:14:08 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/07 15:31:21 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/07 17:56:23 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,14 @@ void	*process_(void *dat)
 
 	philo = (t_philo *) dat;
 	data = (t_data *) philo->data;
-	i = 0;
+	i = 1;
 	if (!(philo->id % 2))
-		alarm_clock(4, data);
+		alarm_clock(2, data);
 	while (i < 4 && !data->deaths)
 	{
 		if (philo->local.must_eat)
 			if (!philo->local.me_)
 				return (NULL);
-		usleep(150);
 		life_(data, philo, &i);
 		i++;
 	}
@@ -40,8 +39,6 @@ void	init_philo_(t_data *data, int i)
 	data->philo[i].id = i + 1;
 	data->philo[i].alive = 1;
 	data->philo[i].data = (void *) data;
-	data->philo[i].l_fork = 0;
-	data->philo[i].r_fork = 0;
 	if (i == 0)
 		data->philo[i].l_id = data->np_ - 1;
 	else
