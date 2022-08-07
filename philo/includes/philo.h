@@ -1,0 +1,104 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/20 14:12:09 by wismith           #+#    #+#             */
+/*   Updated: 2022/08/07 15:59:57 by wismith          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#	ifndef PHILO_H
+# define PHILO_H
+# include <stdio.h>
+# include <unistd.h>
+# include <pthread.h>
+# include <stdlib.h>
+# include <sys/time.h>
+
+typedef struct s_local
+{
+	int				td_;
+	int				te_;
+	int				ts_;
+	int				me_;
+	int				must_eat;
+}	t_local;
+
+typedef struct s_philo
+{
+	void		*data;
+	pthread_t	thread_id;
+	int			id;
+	int			l_fork;
+	int			r_fork;
+	int			l_id;
+	int			r_id;
+	int			last_time_eat;
+	int			alive;
+	int			times_eatin;
+	t_local		local;
+}	t_philo;
+
+typedef struct s_data
+{
+	int				np_;
+	int				td_;
+	int				te_;
+	int				ts_;
+	int				must_eat;
+	int				me_;
+	long long		init_time;
+	pthread_mutex_t	fork_m[200];
+	pthread_mutex_t	print;
+	pthread_mutex_t	time;
+	pthread_mutex_t	death;
+	pthread_mutex_t	eat;
+	int				deaths;
+	int				argc;
+	int				forks[200];
+	t_philo			philo[200];
+	struct timeval	tv;
+}	t_data;
+
+typedef struct s_err
+{
+	int	err;
+}	t_err;
+
+/*	parse */
+/* file: pars */
+void			parser_(t_data *data, char **argv);
+char			*check_(char *s);
+
+/*	init */
+/* file: init */
+void			init_(t_data *data);
+void			*process_(void *dat);
+void			local_vars_(t_data *data, t_philo *p);
+
+/*	tools */
+/* file: atoi */
+int				ft_atoi(const char *nptr, t_err *err);
+/* file: basic */
+int				ft_strlen(char *s);
+int				num_cmp(int num, int cmp, t_err *err);
+void			ft_put_(int fd, char *s);
+void			init_time_(t_data *data);
+/* file: print */
+int				print_(t_philo *philo, char *s);
+/* file: strncmp */
+int				ft_strncmp(const char *s1, const char *s2, size_t n);
+/* file: time */
+void			alarm_clock(unsigned long time, t_data *data);
+unsigned long	new_stamp(t_data *data);
+
+/*	actions */
+/* file: eat_ */
+void			try_eat_(t_philo *p, t_data *data);
+/* file: life_ */
+void			life_(t_data *data, t_philo *p, int *i);
+
+#endif
