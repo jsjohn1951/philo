@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 12:15:52 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/08 15:56:45 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/08 20:36:50 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	death_(t_data *data, t_philo *p)
 {
-	p->current_time = new_stamp(data);
+	p->current_time = new_stamp(data, p);
 	if (p->current_time - p->last_time_eat
 		>= (unsigned long) p->local.td_)
 	{
@@ -48,7 +48,7 @@ void	life_(t_data *data, t_philo *philo, int *i)
 	if (*i == 1)
 		try_eat_(philo, data);
 	if (*i == 2)
-		alarm_clock(print_(philo, "is sleeping"), data);
+		alarm_clock(print_(philo, "is sleeping"), data, philo);
 	if (*i == 3)
 		*i = print_(philo, "is thinking");
 }

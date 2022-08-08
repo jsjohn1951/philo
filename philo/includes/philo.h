@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 14:12:09 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/08 15:52:03 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/08 20:39:19 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,12 @@ typedef struct s_local
 	int				te_;
 	int				ts_;
 	int				me_;
+	int				r_;
+	int				l_;
+	int				rtn;
+	unsigned long	new_time;
+	unsigned long	res;
+	int				i;
 	int				must_eat;
 }	t_local;
 
@@ -92,8 +98,8 @@ int				print_(t_philo *philo, char *s);
 /* file: strncmp */
 int				ft_strncmp(const char *s1, const char *s2, size_t n);
 /* file: time */
-void			alarm_clock(unsigned long time, t_data *data);
-unsigned long	new_stamp(t_data *data);
+void			alarm_clock(unsigned long time, t_data *data, t_philo *p);
+unsigned long	new_stamp(t_data *data, t_philo *p);
 
 /*	actions */
 /* file: eat_ */

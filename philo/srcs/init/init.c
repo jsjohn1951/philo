@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:14:08 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/08 15:57:57 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/08 20:55:34 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,22 @@
 
 void	*process_(void *dat)
 {
-	t_philo	*philo;
+	t_philo	*p;
 	t_data	*data;
-	int		i;
 
-	philo = (t_philo *) dat;
-	data = (t_data *) philo->data;
-	i = 1;
-	if ((philo->id % 2))
-		i = 2;
-	philo->last_time_eat = new_stamp(data);
-	while (i < 4)
+	p = (t_philo *) dat;
+	data = (t_data *) p->data;
+	p->local.i = 1;
+	p->last_time_eat = new_stamp(data, p);
+	while (p->local.i < 4)
 	{
-		if (philo->local.must_eat)
-			if (!philo->local.me_)
+		if (p->local.must_eat)
+			if (!p->local.me_)
 				return (NULL);
-		if (!i)
+		if (!p->local.i)
 			usleep(150);
-		life_(data, philo, &i);
-		i++;
+		life_(data, p, &p->local.i);
+		p->local.i++;
 	}
 	return (NULL);
 }
