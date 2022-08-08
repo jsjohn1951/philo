@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:14:08 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/08 00:54:03 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/08 15:57:57 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,5 @@ void	init_(t_data *data)
 	i = -1;
 	while (++i < data->np_)
 		pthread_join(data->philo[i].thread_id, NULL);
-	printf("\x1B[0m");
 	destroy_mutex_(data);
 }

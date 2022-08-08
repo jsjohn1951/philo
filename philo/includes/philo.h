@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 14:12:09 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/07 18:45:18 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/08 15:52:03 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ char			*check_(char *s);
 void			init_(t_data *data);
 void			*process_(void *dat);
 void			local_vars_(t_data *data, t_philo *p);
+void			destroy_mutex_(t_data *data);
 
 /*	tools */
 /* file: atoi */
