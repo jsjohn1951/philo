@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 14:12:09 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/08 20:39:19 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/09 14:56:51 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct s_philo
 	int				r_id;
 	int				last_time_eat;
 	int				alive;
+	int				eatin;
 	int				times_eatin;
 	unsigned long	current_time;
 	t_local			local;

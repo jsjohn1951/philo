@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:14:08 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/08 20:55:34 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/09 15:13:37 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ void	*process_(void *dat)
 	data = (t_data *) p->data;
 	p->local.i = 1;
 	p->last_time_eat = new_stamp(data, p);
+	if (!(p->id % 2))
+		alarm_clock(p->local.te_, data, p);
 	while (p->local.i < 4)
 	{
 		if (p->local.must_eat)
 			if (!p->local.me_)
 				return (NULL);
-		if (!p->local.i)
-			usleep(150);
 		life_(data, p, &p->local.i);
 		p->local.i++;
 	}
@@ -46,6 +46,7 @@ void	init_philo_(t_data *data, int i)
 	data->philo[i].r_id = data->philo[i].id - 1;
 	data->forks[i] = 0;
 	data->philo[i].times_eatin = 0;
+	data->philo[i].eatin = 0;
 	local_vars_(data, &data->philo[i]);
 }
 

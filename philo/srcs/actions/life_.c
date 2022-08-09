@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 12:15:52 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/08 20:36:50 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/09 15:05:14 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,13 @@ int	death_(t_data *data, t_philo *p)
 		return (1);
 	}
 	return (0);
+}
+
+void	feeder(t_data *data, t_philo *p, int *i)
+{
+	try_eat_(p, data);
+	if (!p->eatin)
+		*i = 0;
 }
 
 void	life_(t_data *data, t_philo *philo, int *i)
@@ -46,7 +53,7 @@ void	life_(t_data *data, t_philo *philo, int *i)
 		return ;
 	}
 	if (*i == 1)
-		try_eat_(philo, data);
+		feeder(data, philo, i);
 	if (*i == 2)
 		alarm_clock(print_(philo, "is sleeping"), data, philo);
 	if (*i == 3)
