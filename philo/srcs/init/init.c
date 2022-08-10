@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:14:08 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/09 15:13:37 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/09 19:27:16 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,13 +83,15 @@ void	init_(t_data *data)
 	i = -1;
 	data->deaths = 0;
 	init_mutex_(data);
-	init_time_(data);
 	while (++i < data->np_)
 		init_philo_(data, i);
 	i = -1;
 	while (++i < data->np_)
+	{
+		init_time_(&data->philo[i]);
 		pthread_create(&data->philo[i].thread_id,
 			NULL, process_, &data->philo[i]);
+	}
 	i = -1;
 	while (++i < data->np_)
 		pthread_join(data->philo[i].thread_id, NULL);

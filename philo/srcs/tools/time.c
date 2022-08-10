@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/06 14:52:22 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/09 17:46:01 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/09 18:47:45 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 unsigned long	new_stamp(t_data *data, t_philo *p)
 {
 	pthread_mutex_lock(&data->time);
-	gettimeofday(&data->tv, NULL);
-	p->local.new_time = (data->tv.tv_sec * 1000) + (data->tv.tv_usec / 1000);
-	p->local.res = p->local.new_time - data->init_time;
+	gettimeofday(&p->tv, NULL);
+	p->local.new_time = (p->tv.tv_sec * 1000) + (p->tv.tv_usec / 1000);
+	p->local.res = p->local.new_time - p->init_time;
 	pthread_mutex_unlock(&data->time);
 	return (p->local.res);
 }

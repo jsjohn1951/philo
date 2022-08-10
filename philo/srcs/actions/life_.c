@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 12:15:52 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/09 15:05:14 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/10 11:10:46 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	death_(t_data *data, t_philo *p)
 {
 	p->current_time = new_stamp(data, p);
 	if (p->current_time - p->last_time_eat
-		>= (unsigned long) p->local.td_)
+		>= (unsigned long) p->local.td_ + 9)
 	{
 		print_(p, "died");
 		pthread_mutex_lock(&data->death);
@@ -41,12 +41,8 @@ void	life_(t_data *data, t_philo *philo, int *i)
 	deaths = 0;
 	pthread_mutex_lock(&data->death);
 	if (data->deaths)
-	{
-		pthread_mutex_unlock(&data->death);
 		deaths = 1;
-	}
-	else
-		pthread_mutex_unlock(&data->death);
+	pthread_mutex_unlock(&data->death);
 	if (deaths || death_(data, philo))
 	{
 		*i = 4;
@@ -57,5 +53,8 @@ void	life_(t_data *data, t_philo *philo, int *i)
 	if (*i == 2)
 		alarm_clock(print_(philo, "is sleeping"), data, philo);
 	if (*i == 3)
+	{
+		philo->eatin = 0;
 		*i = print_(philo, "is thinking");
+	}
 }

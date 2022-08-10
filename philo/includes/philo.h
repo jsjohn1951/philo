@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 14:12:09 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/09 14:56:51 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/09 18:47:13 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ typedef struct s_philo
 	int				eatin;
 	int				times_eatin;
 	unsigned long	current_time;
+	unsigned long	init_time;
+	struct timeval	tv;
 	t_local			local;
 }	t_philo;
 
@@ -56,7 +58,6 @@ typedef struct s_data
 	int				ts_;
 	int				must_eat;
 	int				me_;
-	long long		init_time;
 	pthread_mutex_t	fork_m[200];
 	pthread_mutex_t	print;
 	pthread_mutex_t	time;
@@ -66,7 +67,6 @@ typedef struct s_data
 	int				argc;
 	int				forks[200];
 	t_philo			philo[200];
-	struct timeval	tv;
 }	t_data;
 
 typedef struct s_err
@@ -93,7 +93,7 @@ int				ft_atoi(const char *nptr, t_err *err);
 int				ft_strlen(char *s);
 int				num_cmp(int num, int cmp, t_err *err);
 void			ft_put_(int fd, char *s);
-void			init_time_(t_data *data);
+void			init_time_(t_philo *p);
 /* file: print */
 int				print_(t_philo *philo, char *s);
 /* file: strncmp */
