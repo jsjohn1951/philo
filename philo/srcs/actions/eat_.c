@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/06 15:50:42 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/09 19:05:00 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/10 14:33:38 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ void	if_must_eat_(t_philo *p)
 		p->local.me_--;
 }
 
-int	truth_(pthread_mutex_t *mu, int fork, t_philo *p)
+int	truth_(pthread_mutex_t *mu, int fork, t_data *data, t_philo *p)
 {
 	p->local.rtn = 0;
 	pthread_mutex_lock(mu);
-	if (!fork)
+	if (!data->forks[fork])
 		p->local.rtn = 1;
 	pthread_mutex_unlock(mu);
 	return (p->local.rtn);
@@ -30,7 +30,7 @@ int	truth_(pthread_mutex_t *mu, int fork, t_philo *p)
 
 void	left_fork_(t_philo *p, t_data *data)
 {
-	if (truth_(&data->fork_m[p->l_id], data->forks[p->l_id], p))
+	if (truth_(&data->fork_m[p->l_id], p->l_id, data, p))
 	{
 		pthread_mutex_lock(&data->fork_m[p->l_id]);
 		data->forks[p->l_id] = 1;
@@ -48,8 +48,8 @@ void	left_fork_(t_philo *p, t_data *data)
 
 void	try_eat_(t_philo *p, t_data *data)
 {
-	p->local.r_ = truth_(&data->fork_m[p->r_id], data->forks[p->r_id], p);
-	p->local.l_ = truth_(&data->fork_m[p->l_id], data->forks[p->l_id], p);
+	p->local.r_ = truth_(&data->fork_m[p->r_id], p->r_id, data, p);
+	p->local.l_ = truth_(&data->fork_m[p->l_id], p->l_id, data, p);
 	if (p->local.r_ && p->local.l_)
 	{
 		pthread_mutex_lock(&data->fork_m[p->r_id]);
