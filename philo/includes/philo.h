@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 14:12:09 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/10 15:25:22 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/10 15:43:45 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef struct s_local
 	int				td_;
 	int				te_;
 	int				ts_;
+	int				np_;
 	int				me_;
 	int				r_;
 	int				l_;
@@ -103,5 +104,7 @@ unsigned long	new_stamp(t_data *data, t_philo *p);
 void			try_eat_(t_philo *p, t_data *data);
 /* file: life_ */
 void			life_(t_data *data, t_philo *p, int *i);
+/* file: lonely_life */
+void			ft_lonely_death(t_data *data, t_philo *p);
 
 #endif

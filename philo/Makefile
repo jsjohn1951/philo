@@ -6,7 +6,7 @@
 #    By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/20 13:56:51 by wismith           #+#    #+#              #
-#    Updated: 2022/08/10 15:10:30 by wismith          ###   ########.fr        #
+#    Updated: 2022/08/10 15:44:22 by wismith          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ SRCS = 	main\
 		init/local_\
 		actions/eat_\
 		actions/life_\
+		actions/lonely_life\
 
 OBJ = $(addprefix $(OBJDIR)/, $(addsuffix .o, $(SRCS)))
 

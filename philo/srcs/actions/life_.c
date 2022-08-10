@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 12:15:52 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/10 11:10:46 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/10 16:07:31 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,17 @@ int	death_(t_data *data, t_philo *p)
 {
 	p->current_time = new_stamp(data, p);
 	if (p->current_time - p->last_time_eat
-		>= (unsigned long) p->local.td_ + 9)
+		>= (unsigned long) p->local.td_)
 	{
-		print_(p, "died");
 		pthread_mutex_lock(&data->death);
-		data->deaths = 1;
-		pthread_mutex_unlock(&data->death);
+		if (!data->deaths)
+		{
+			data->deaths = 1;
+			pthread_mutex_unlock(&data->death);
+			print_(p, "died");
+		}
+		else
+			pthread_mutex_unlock(&data->death);
 		return (1);
 	}
 	return (0);
