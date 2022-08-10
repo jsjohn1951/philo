@@ -6,7 +6,7 @@
 #    By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/20 13:56:51 by wismith           #+#    #+#              #
-#    Updated: 2022/08/07 12:38:02 by wismith          ###   ########.fr        #
+#    Updated: 2022/08/10 15:10:30 by wismith          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,10 +15,8 @@
 NAME = philo
 
 SRCS = 	main\
-		tools/atoi_\
 		tools/basic\
 		tools/print\
-		tools/strncmp_\
 		tools/time\
 		parse/pars\
 		init/init\

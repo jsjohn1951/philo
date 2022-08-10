@@ -6,11 +6,18 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/06 14:52:22 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/09 18:47:45 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/10 15:07:40 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/philo.h"
+
+void	init_time_(t_philo *p)
+{
+	gettimeofday(&p->tv, NULL);
+	p->init_time = (p->tv.tv_sec * 1000)
+		+ (p->tv.tv_usec / 1000);
+}
 
 unsigned long	new_stamp(t_data *data, t_philo *p)
 {
@@ -21,15 +28,6 @@ unsigned long	new_stamp(t_data *data, t_philo *p)
 	pthread_mutex_unlock(&data->time);
 	return (p->local.res);
 }
-
-// void	alarm_clock(unsigned long time, t_data *data, t_philo *p)
-// {
-// 	unsigned long	res;
-
-// 	res = new_stamp(data, p);
-// 	while ((new_stamp(data, p) - res) < time)
-// 		;
-// }
 
 void	alarm_clock(unsigned long time, t_data *data, t_philo *p)
 {

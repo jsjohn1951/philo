@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 14:12:09 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/09 18:47:13 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/10 15:25:22 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,21 +84,17 @@ char			*check_(char *s);
 void			init_(t_data *data);
 void			*process_(void *dat);
 void			local_vars_(t_data *data, t_philo *p);
-void			destroy_mutex_(t_data *data);
 
 /*	tools */
-/* file: atoi */
-int				ft_atoi(const char *nptr, t_err *err);
 /* file: basic */
+int				ft_strncmp(const char *s1, const char *s2, size_t n);
 int				ft_strlen(char *s);
 int				num_cmp(int num, int cmp, t_err *err);
 void			ft_put_(int fd, char *s);
-void			init_time_(t_philo *p);
 /* file: print */
 int				print_(t_philo *philo, char *s);
-/* file: strncmp */
-int				ft_strncmp(const char *s1, const char *s2, size_t n);
 /* file: time */
+void			init_time_(t_philo *p);
 void			alarm_clock(unsigned long time, t_data *data, t_philo *p);
 unsigned long	new_stamp(t_data *data, t_philo *p);
 
