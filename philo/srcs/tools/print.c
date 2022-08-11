@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:35:07 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/08 20:35:49 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/11 15:37:22 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	print_(t_philo *philo, char *s)
 	data = (t_data *) philo->data;
 	pthread_mutex_lock(&data->print);
 	pthread_mutex_lock(&data->death);
-	printf("%lums %d %s\n", new_stamp(data, philo), philo->id, s);
+	printf("%lums %d %s\n", new_stamp(philo), philo->id, s);
 	pthread_mutex_unlock(&data->death);
 	pthread_mutex_unlock(&data->print);
 	if (!ft_strncmp(s, "is sleeping", ft_strlen("is sleeping") - 1))

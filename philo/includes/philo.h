@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 14:12:09 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/10 15:43:45 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/11 15:57:58 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,9 @@ void			ft_put_(int fd, char *s);
 int				print_(t_philo *philo, char *s);
 /* file: time */
 void			init_time_(t_philo *p);
-void			alarm_clock(unsigned long time, t_data *data, t_philo *p);
-unsigned long	new_stamp(t_data *data, t_philo *p);
+void			alarm_clock(unsigned long time, t_philo *p);
+unsigned long	new_stamp(t_philo *p);
+unsigned long	new_stamp_lonely(t_philo *p);
 
 /*	actions */
 /* file: eat_ */

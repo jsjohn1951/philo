@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 15:39:18 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/10 15:57:06 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/11 15:58:47 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 int	lonely_death_(t_data *data, t_philo *p)
 {
-	p->current_time = new_stamp(data, p);
+	p->current_time = new_stamp_lonely(p);
 	if (p->current_time - p->last_time_eat
 		>= (unsigned long) p->local.td_)
 	{
-		print_(p, "died");
+		printf("%lu 1 died\n", p->current_time);
 		data->deaths = 1;
 		return (1);
 	}
@@ -37,15 +37,16 @@ void	ft_lonely_death(t_data *data, t_philo *p)
 			if (lonely_death_(data, p))
 				i = 4;
 			if (i == 1)
-				print_(p, "grabbed a fork");
+				printf("%lu 1 has taken a fork\n",
+					p->current_time);
 			if (i == 2)
 			{
-				print_(p, "is sleeping");
-				usleep(p->local.ts_ * 1000);
+				printf("%lu 1 is sleeping\n", p->current_time);
+				alarm_clock(p->local.ts_, p);
 			}
 			if (i == 3)
 			{
-				print_(p, "is thinking");
+				printf("%lu 1 is thinking\n", p->current_time);
 				i = 0;
 			}
 			i++;
