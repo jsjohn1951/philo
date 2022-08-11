@@ -6,13 +6,13 @@
 #    By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/20 13:56:51 by wismith           #+#    #+#              #
-#    Updated: 2022/08/10 22:25:17 by wismith          ###   ########.fr        #
+#    Updated: 2022/08/11 12:24:32 by wismith          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #.SILENT:
 
-NAME = philo
+NAME = ../philo/philo_bonus
 
 SRCS = 	main\
 		tools/basic\
@@ -21,9 +21,6 @@ SRCS = 	main\
 		parse/pars\
 		init/init\
 		init/local_\
-		actions/eat_\
-		actions/life_\
-		actions/lonely_life\
 
 OBJ = $(addprefix $(OBJDIR)/, $(addsuffix .o, $(SRCS)))
 
@@ -48,32 +45,27 @@ $(NAME) : $(OBJ)
 	@tput setaf 6; echo "-> Compiling <-"; tput setaf 7;
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME) -lpthread 
 
-bonus :
-	make -C ../philo_bonus
-
 clean :
 	@tput setaf 1; echo "-> Cleaning <-"; tput setaf 7;
 	rm -rf $(OBJDIR)
-	make clean -C ../philo_bonus
 
 fclean : clean
 	@tput setaf 1; echo "-> Removing Executable <-"; tput setaf 7;
 	rm -f $(NAME)
-	make fclean -C ../philo_bonus
 
 printre :
 	@tput setaf 4; echo "-> Recreating <-"; tput setaf 7;
 
 printasciiart :
 	@printf "\e[1;1H\e[2J\x1B[31m"
-	@printf "             ___          \n"
-	@printf "            /   \\        \n"
-	@printf "        /\\ |     \\       \n"
-	@printf "      ////\\|     ||       \n"
-	@printf "    ////   \\ ___//\       \n"
-	@printf "   ///      \\      \            _          _ _   _    \n"
-	@printf "  ///       |\\      |   __ __ _(_)____ __ (_) |_| |_  \n"
-	@printf " //         | \\  \   \  \ V  V / (_-< '  \| |  _| ' \ \n"
+	@printf "             ___                                           .______     ______   .__   __.  __    __       _______.\n"
+	@printf "            /   \\                                          |   _  \   /  __  \  |  \ |  | |  |  |  |     /       |\n"
+	@printf "        /\\ |     \\                                         |  |_)  | |  |  |  | |   \|  | |  |  |  |    |   (----.\n"
+	@printf "      ////\\|     ||                                        |   _  <  |  |  |  | |  .    | |  |  |  |     \   \    \n"
+	@printf "    ////   \\ ___//\                                        |  |_)  | |   ---  | |  |\   | |   --'  | .----)   |   \n"
+	@printf "   ///      \\      \            _          _ _   _         |______/   \______/  |__| \__|  \______/  |_______/    \n"
+	@printf "  ///       |\\      |   __ __ _(_)____ __ (_) |_| |_\n"
+	@printf " //         | \\  \   \  \ V  V / (_-< '  \| |  _| ' \   \n"
 	@printf " /          |  \\  \   \  \_/\_/|_/__/_|_|_|_|\__|_||_|\n"
 	@printf "            |   \\ /  "; printf  "____  _     _ _                       _                    \n"
 	@printf "            |    \/ "; printf  "|  _ \| |__ (_) | ___  ___  ___  _ __ | |__   ___ _ __ ___ \n"
