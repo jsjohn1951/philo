@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:14:08 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/11 15:58:34 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/11 17:11:31 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	*process_(void *dat)
 	p->last_time_eat = new_stamp(p);
 	ft_lonely_death(data, p);
 	if (!(p->id % 2))
-		alarm_clock(p->local.te_, p);
+		alarm_clock(p->local.te_, data, p);
 	while (p->local.i < 4)
 	{
 		if (p->local.must_eat)

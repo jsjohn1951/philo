@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/06 15:50:42 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/11 15:59:00 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/11 17:11:41 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	left_fork_(t_philo *p, t_data *data)
 		p->eatin = 1;
 		if_must_eat_(p);
 		p->last_time_eat = new_stamp(p);
-		alarm_clock(print_(p, "is eating"), p);
+		alarm_clock(print_(p, "is eating"), data, p);
 		pthread_mutex_lock(&data->fork_m[p->l_id]);
 		data->forks[p->l_id] = 0;
 		pthread_mutex_unlock(&data->fork_m[p->l_id]);

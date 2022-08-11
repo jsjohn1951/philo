@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/06 14:52:22 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/11 15:59:40 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/11 17:11:12 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,19 +35,20 @@ unsigned long	new_stamp(t_philo *p)
 	return (p->local.res);
 }
 
-void	alarm_clock(unsigned long time, t_philo *p)
+void	alarm_clock(unsigned long time, t_data *data, t_philo *p)
 {
 	unsigned long	current;
 	unsigned long	init;
 	struct timeval	tv;
 
-	(void) p;
 	gettimeofday(&tv, NULL);
 	init = (tv.tv_sec * 1000) + (tv.tv_usec / 1000);
-	current = init;
-	while ((current - init) < time)
+	current = 0;
+	while (current < time)
 	{
+		if (death_(data, p))
+			return ;
 		gettimeofday(&tv, NULL);
-		current = (tv.tv_sec * 1000) + (tv.tv_usec / 1000);
+		current = ((tv.tv_sec * 1000) + (tv.tv_usec / 1000)) - init;
 	}
 }

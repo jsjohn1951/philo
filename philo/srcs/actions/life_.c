@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 12:15:52 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/11 15:58:22 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/11 17:11:55 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	life_(t_data *data, t_philo *philo, int *i)
 	if (*i == 1)
 		feeder(data, philo, i);
 	if (*i == 2)
-		alarm_clock(print_(philo, "is sleeping"), philo);
+		alarm_clock(print_(philo, "is sleeping"), data, philo);
 	if (*i == 3)
 	{
 		philo->eatin = 0;

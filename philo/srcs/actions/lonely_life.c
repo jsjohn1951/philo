@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 15:39:18 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/11 15:58:47 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/11 17:12:19 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	ft_lonely_death(t_data *data, t_philo *p)
 			if (i == 2)
 			{
 				printf("%lu 1 is sleeping\n", p->current_time);
-				alarm_clock(p->local.ts_, p);
+				alarm_clock(p->local.ts_, data, p);
 			}
 			if (i == 3)
 			{

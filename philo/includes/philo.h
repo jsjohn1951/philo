@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 14:12:09 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/11 15:57:58 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/11 17:20:01 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ typedef struct s_err
 
 /*	parse */
 /* file: pars */
-void			parser_(t_data *data, char **argv);
+void			parser_(t_data *data, char **argv, t_err *err);
 char			*check_(char *s);
 
 /*	init */
@@ -96,7 +96,7 @@ void			ft_put_(int fd, char *s);
 int				print_(t_philo *philo, char *s);
 /* file: time */
 void			init_time_(t_philo *p);
-void			alarm_clock(unsigned long time, t_philo *p);
+void			alarm_clock(unsigned long time, t_data *data, t_philo *p);
 unsigned long	new_stamp(t_philo *p);
 unsigned long	new_stamp_lonely(t_philo *p);
 
@@ -105,6 +105,7 @@ unsigned long	new_stamp_lonely(t_philo *p);
 void			try_eat_(t_philo *p, t_data *data);
 /* file: life_ */
 void			life_(t_data *data, t_philo *p, int *i);
+int				death_(t_data *data, t_philo *p);
 /* file: lonely_life */
 void			ft_lonely_death(t_data *data, t_philo *p);
 
