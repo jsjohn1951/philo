@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/06 15:50:42 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/11 17:11:41 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/13 17:35:16 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	left_fork_(t_philo *p, t_data *data)
 		data->forks[p->l_id] = 1;
 		pthread_mutex_unlock(&data->fork_m[p->l_id]);
 		print_(p, "has taken a fork");
+		print_(p, "has taken a fork");
 		p->eatin = 1;
 		if_must_eat_(p);
 		p->last_time_eat = new_stamp(p);
@@ -55,7 +56,6 @@ void	try_eat_(t_philo *p, t_data *data)
 		pthread_mutex_lock(&data->fork_m[p->r_id]);
 		data->forks[p->r_id] = 1;
 		pthread_mutex_unlock(&data->fork_m[p->r_id]);
-		print_(p, "has taken a fork");
 		left_fork_(p, data);
 		pthread_mutex_lock(&data->fork_m[p->r_id]);
 		data->forks[p->r_id] = 0;
