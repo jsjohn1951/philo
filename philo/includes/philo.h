@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 14:12:09 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/11 17:20:01 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/13 14:04:59 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,7 @@ typedef struct s_data
 	int				must_eat;
 	int				me_;
 	pthread_mutex_t	fork_m[200];
-	pthread_mutex_t	print;
-	pthread_mutex_t	time;
 	pthread_mutex_t	death;
-	pthread_mutex_t	eat;
 	int				deaths;
 	int				argc;
 	int				forks[200];

@@ -6,7 +6,7 @@
 /*   By: wismith <wismith@42ABUDHABI.AE>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:14:08 by wismith           #+#    #+#             */
-/*   Updated: 2022/08/11 17:11:31 by wismith          ###   ########.fr       */
+/*   Updated: 2022/08/13 15:29:49 by wismith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ void	*process_(void *dat)
 	p->local.i = 1;
 	p->last_time_eat = new_stamp(p);
 	ft_lonely_death(data, p);
-	if (!(p->id % 2))
-		alarm_clock(p->local.te_, data, p);
 	while (p->local.i < 4)
 	{
 		if (p->local.must_eat)
@@ -31,6 +29,7 @@ void	*process_(void *dat)
 				return (NULL);
 		life_(data, p, &p->local.i);
 		p->local.i++;
+		usleep(150);
 	}
 	return (NULL);
 }
@@ -58,10 +57,7 @@ void	init_mutex_(t_data *data)
 	i = -1;
 	while (++i < data->np_)
 		pthread_mutex_init(&data->fork_m[i], NULL);
-	pthread_mutex_init(&data->time, NULL);
-	pthread_mutex_init(&data->print, NULL);
 	pthread_mutex_init(&data->death, NULL);
-	pthread_mutex_init(&data->eat, NULL);
 }
 
 void	destroy_mutex_(t_data *data)
@@ -71,10 +67,7 @@ void	destroy_mutex_(t_data *data)
 	i = -1;
 	while (++i < data->np_)
 		pthread_mutex_destroy(&data->fork_m[i]);
-	pthread_mutex_destroy(&data->time);
-	pthread_mutex_destroy(&data->print);
 	pthread_mutex_destroy(&data->death);
-	pthread_mutex_destroy(&data->eat);
 }
 
 void	init_(t_data *data)
